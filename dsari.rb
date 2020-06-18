@@ -1,11 +1,14 @@
 class Dsari < Formula
   desc "Do Something and Record It - Lightweight CI/CD system"
   homepage "https://github.com/rfinnie/dsari"
-  head "https://github.com/rfinnie/dsari.git"
+  head "https://github.com/rfinnie/dsari.git", :branch => "main"
+
+  depends_on "python@3"
 
   def install
-    ENV.prepend_create_path "PYTHONPATH", libexec/"lib/python2.7/site-packages"
-    system "python", *Language::Python.setup_install_args(libexec)
+    pyver = Language::Python.major_minor_version "python3"
+    ENV.prepend_create_path "PYTHONPATH", libexec/"lib/python#{pyver}/site-packages"
+    system "python3", *Language::Python.setup_install_args(libexec)
     man1.install "doc/dsari-daemon.1"
     man1.install "doc/dsari-info.1"
     man1.install "doc/dsari-render.1"
