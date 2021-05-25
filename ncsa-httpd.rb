@@ -61,32 +61,32 @@ class NcsaHttpd < Formula
 
       mkdir -p /usr/local/etc/httpd
       if ! [ -e /usr/local/etc/httpd/httpd ]; then
-        ln -s /usr/local/opt/ncsa-httpd/libexec/ncsa-httpd/httpd /usr/local/etc/httpd/httpd
+        ln -s #{HOMEBREW_PREFIX}/opt/ncsa-httpd/libexec/ncsa-httpd/httpd /usr/local/etc/httpd/httpd
       fi
 
       mkdir -p /usr/local/etc/httpd/htdocs
       mkdir -p /usr/local/etc/httpd/logs
 
       mkdir -p /usr/local/etc/httpd/conf
-      for i in /usr/local/opt/ncsa-httpd/share/ncsa-httpd/conf/*; do
+      for i in #{HOMEBREW_PREFIX}/opt/ncsa-httpd/share/ncsa-httpd/conf/*; do
         [ -e /usr/local/etc/httpd/conf/$(basename $i) ] && continue
         cp $i /usr/local/etc/httpd/conf/$(basename $i)
       done
 
       mkdir -p /usr/local/etc/httpd/support
-      for i in /usr/local/opt/ncsa-httpd/libexec/ncsa-httpd/support/*; do
+      for i in #{HOMEBREW_PREFIX}/opt/ncsa-httpd/libexec/ncsa-httpd/support/*; do
         [ -e /usr/local/etc/httpd/support/$(basename $i) ] && continue
         ln -sf $i /usr/local/etc/httpd/support/$(basename $i)
       done
 
       mkdir -p /usr/local/etc/httpd/cgi-bin
-      for i in /usr/local/opt/ncsa-httpd/libexec/ncsa-httpd/cgi-bin/*; do
+      for i in #{HOMEBREW_PREFIX}/opt/ncsa-httpd/libexec/ncsa-httpd/cgi-bin/*; do
         [ -e /usr/local/etc/httpd/cgi-bin/$(basename $i) ] && continue
         ln -sf $i /usr/local/etc/httpd/cgi-bin/$(basename $i)
       done
 
       mkdir -p /usr/local/etc/httpd/icons
-      for i in /usr/local/opt/ncsa-httpd/share/ncsa-httpd/icons/*; do
+      for i in #{HOMEBREW_PREFIX}/opt/ncsa-httpd/share/ncsa-httpd/icons/*; do
         [ -e /usr/local/etc/httpd/icons/$(basename $i) ] && continue
         ln -sf $i /usr/local/etc/httpd/icons/$(basename $i)
       done
